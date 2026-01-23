@@ -1,0 +1,110 @@
+:root {
+  --bg: #f6e6d7;
+  --text: #222;
+  --room-wall: #f6e6d7;
+  --room-fg: #fff;
+  --transition: background 2s cubic-bezier(.4,0,.2,1), color 2s cubic-bezier(.4,0,.2,1);
+  --fg: #1c5521; /* dark green */
+}
+
+@font-face {
+  font-family: "YumiWorld";
+  src: url("assets/fonts/Jersey25-Regular.ttf") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  font-family: "YumiWorld", 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Background crossfade (reliable version):
+   - Day background stays on body
+   - Night background is an overlay that fades in/out
+*/
+body {
+  background: var(--bg) url('/assets/background.png') center 100% / cover no-repeat;
+  position: relative;
+  z-index: 0;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url('/assets/night_background.png') center 100% / cover no-repeat;
+  opacity: 0;
+  transition: opacity 2s cubic-bezier(.4,0,.2,1);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Make sure app content is above the background overlay */
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+body.night-mode::before {
+  opacity: 1;
+}
+
+body.night-mode, .night-mode #root {
+  --bg: #142a50;
+  --text: #e6e6e6;
+  --room-wall: #232733;
+  --room-fg: #232733;
+  --fg: #a5e8ed; /* lighter green for contrast at night */
+}
+
+.room {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  transition: var(--transition);
+}
+.hair {
+  background: url('/assets/hair1.png') center center / cover no-repeat;
+}
+
+.room-canvas {
+  width: 90vw;
+  max-width: 1100px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  background: none;
+  transition: var(--transition);
+}
+
+.interactive { cursor: pointer; }
+.interactive:hover { opacity: 0.9; }
+
+.night-toggle {
+  position: fixed;
+  top: 18px;
+  right: 24px;
+  z-index: 10;
+  background: var(--room-accent);
+  color: var(--fg);
+  border: 1px solid var(--room-stroke);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background 0.3s, color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.night .night-toggle {
+  background: var(--room-accent);
+  color: var(--fg);
+  border-color: var(--room-stroke);
+}

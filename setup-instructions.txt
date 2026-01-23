@@ -1,0 +1,13 @@
+Setup instructions
+
+1. In the project root, run:
+   npm install
+
+2. Start dev server:
+   npm run dev
+
+3. Open http://localhost:5173
+
+Notes:
+- Replace the SVG artwork in /public/assets with your hand-drawn files and reference them inside src/components/Room.tsx if you prefer images over inline SVG.
+- Edit the placeholder pages in src/pages to add your content.
