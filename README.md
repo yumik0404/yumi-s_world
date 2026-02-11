@@ -12,4 +12,4 @@ Structure:
 
 Next steps:
 - Replace SVG with hand-drawn images in `public/assets` and reference them from `Room.tsx`.
-- Add navigation routes and pages for /about /projects /notes /contact
+- Fill in the section components in `src/pages/*` (they render as scroll sections on one long page).

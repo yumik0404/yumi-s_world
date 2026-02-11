@@ -1,10 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import './room.css'
 
 export default function Room() {
-  const navigate = useNavigate()
-  const [night, setNight] = useState(false)
   const [isGirlHover, setIsGirlHover] = useState(false)
   const [girlFrame, setGirlFrame] = useState<1 | 2>(1)
   const waveIntervalRef = useRef<number | null>(null)
@@ -16,10 +13,11 @@ export default function Room() {
   const [isAboutHover, setIsAboutHover] = useState(false)
   const [isArtHover, setIsArtHover] = useState(false)
 
-  useEffect(() => {
-    document.body.classList.toggle('night-mode', night)
-    return () => document.body.classList.remove('night-mode')
-  }, [night])
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id)
+    if (!el) return
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 
   // Start/stop looping between girl1 and girl2 while hovering
   useEffect(() => {
@@ -61,18 +59,6 @@ export default function Room() {
     }
   }, [])
 
-  const onClickInteractive = (e: React.MouseEvent<SVGGElement, MouseEvent>) => {
-    const link = (e.currentTarget as SVGGElement).dataset.link
-    if (link) navigate(link)
-  }
-
-  const onKeyDownInteractive = (e: React.KeyboardEvent<SVGGElement>) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      const link = (e.currentTarget as SVGGElement).dataset.link
-      if (link) navigate(link)
-    }
-  }
-
   // Overlay SVG coordinate space (like a viewBox)
   const OVERLAY_W = 1440
   const OVERLAY_H = 900
@@ -108,12 +94,12 @@ export default function Room() {
   const deerHitH = 80
 
   return (
-    <div className="room" style={{ position: 'fixed', inset: 0, width: '100vw', height: '100vh', minHeight: 0, minWidth: 0, zIndex: 0, display: 'block' }}>      
+    <div className="room">
 
       <div
         style={{
           position: 'absolute',
-          top: 24,
+          top: 'calc(var(--topbar-h) + 16px)',
           left: 40,
           zIndex: 10,
           fontSize: 40,
@@ -126,29 +112,13 @@ export default function Room() {
           
         }}
       >
-        Welcome to Yumi&apos;s World
       </div>
-
-      <button
-        style={{
-          position: 'absolute', top: 24, right: 24, zIndex: 10,
-          background: night ? '#232733' : '#fff',
-          color: night ? '#e6e6e6' : '#232733',
-          border: '1px solid #bbb', borderRadius: 20, padding: '8px 18px',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.07)', cursor: 'pointer',
-          transition: 'background 0.7s cubic-bezier(.4,0,.2,1), color 0.7s cubic-bezier(.4,0,.2,1)'
-        }}
-        onClick={() => setNight(n => !n)}
-        aria-label={night ? 'Switch to day mode' : 'Switch to night mode'}
-      >
-        {night ? 'Night' : 'Day'}
-      </button>
 
       <svg
         viewBox={`0 0 ${OVERLAY_W} ${OVERLAY_H}`}
         preserveAspectRatio="xMinYMax meet"
         style={{
-          position: 'fixed',
+          position: 'absolute',
           left: 0,
           bottom: 0,
           width: '100vw',
@@ -196,7 +166,7 @@ export default function Room() {
           style={{ pointerEvents: 'auto', cursor: 'pointer' }}
           onMouseEnter={() => setIsAboutHover(true)}
           onMouseLeave={() => setIsAboutHover(false)}
-          onClick={() => navigate('/about')}
+          onClick={() => scrollToSection('about')}
         />
 
         {isAboutHover && (
@@ -241,7 +211,7 @@ export default function Room() {
             setIsDeerHover(false)
             setIsArtHover(false)
           }}
-          onClick={() => navigate('/art')}
+          onClick={() => scrollToSection('gallery')}
         />
 
         {isArtHover && (
@@ -255,7 +225,7 @@ export default function Room() {
               fill="var(--fg)"
               style={{ userSelect: 'none' }}
             >
-              Art
+              Gallery
             </text>
           </g>
         )}
