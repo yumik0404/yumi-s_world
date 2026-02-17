@@ -1,26 +1,85 @@
+/* Larger video style for Gallery.tsx */
+.gallery-video-row {
+  display: inline-block;
+  width: 340px;
+  height: 340px;
+  aspect-ratio: 1/1;
+  margin: 0 10px 20px 0;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  background: transparent;
+}
+/* Gallery row image style for Gallery.tsx */
+.gallery-image-row {
+  display: inline-block;
+  max-width: 340px;
+  max-height: 340px;
+  margin: 0 10px 20px 0;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  background: transparent;
+}
+
+/* Larger size for artwork_sketch */
+.gallery-image-large {
+  max-width: 400px;
+  max-height: 400px;
+  margin-top: -60px;
+}
 :root {
-  --bg: #f6e6d7;
+  --bg: #f3fcfa;
   --text: #222;
   --room-wall: #f6e6d7;
   --room-fg: #fff;
   --transition: background 2s cubic-bezier(.4,0,.2,1), color 2s cubic-bezier(.4,0,.2,1);
   --fg: #1c5521; /* dark green */
   --topbar-h: 56px;
-  --content-max: 1200px;
+  --content-max: 1440px;
+  /* Font roles */
+  --font-title: 'NeueHaas', 'Helvetica Neue', sans-serif;
+  --font-body: 'Helvetica Neue', 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-accent: 'YumiWorld', 'Helvetica Neue', Arial, sans-serif;
 }
 
 @font-face {
   font-family: "YumiWorld";
-  src: url("assets/fonts/Jersey25-Regular.ttf") format("woff2");
+  src: url('/assets/fonts/Jersey25-Regular.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
+/* NeueHaas (Normale 400) */
+@font-face {
+  font-family: 'NeueHaas';
+  src: url('/assets/fonts/neue%20haas/TrueType/DeFonte%20reduced%20Normale.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NeueHaas";
+  src: url('/assets/fonts/neue%20haas/TrueType/DeFonte%20reduced%20DemiGras.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Title font (role) */
+.section-title,
+.project-title,
+.home-intro-title,
+.project-detail-title {
+  font-family: var(--font-title);
+}
+
 html, body, #root {
   height: 100%;
   margin: 0;
-  font-family: "YumiWorld", 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--font-body);
 }
 
 html {
@@ -82,7 +141,7 @@ body.night-mode .topnav {
   border: none;
   cursor: pointer;
   padding: 0;
-  font-family: inherit;
+  font-family: var(--font-title);
 }
 
 .topnav-links {
@@ -102,6 +161,11 @@ body.night-mode .topnav {
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.08s ease, opacity 0.2s ease;
+}
+
+/* Right-side topnav buttons use the accent font */
+.topnav-right .topnav-link {
+  font-family: var(--font-accent);
 }
 
 body.night-mode .topnav-link {
@@ -127,6 +191,68 @@ body.night-mode .topnav-link {
 .section--hero {
   min-height: 100vh;
   display: block;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* Home-only illustrated background */
+.section--hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('/assets/background.png') center 100% / cover no-repeat;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 40%,
+    rgba(0,0,0,0.85) 58%,
+    rgba(0,0,0,0.45) 78%,
+    rgba(0,0,0,0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 40%,
+    rgba(0,0,0,0.85) 58%,
+    rgba(0,0,0,0.45) 78%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+.section--hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('/assets/night_background.png') center 100% / cover no-repeat;
+  opacity: 0;
+  transition: opacity 2s cubic-bezier(.4,0,.2,1);
+  pointer-events: none;
+  z-index: 1;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 20%,
+    rgba(0,0,0,0.85) 58%,
+    rgba(0,0,0,0.45) 78%,
+    rgba(0,0,0,0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 40%,
+    rgba(0,0,0,0.85) 58%,
+    rgba(0,0,0,0.45) 78%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+body.night-mode .section--hero::before {
+  background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.35)), url('/assets/night_background.png') center 100% / cover no-repeat;
+  opacity: 1;
 }
 
 /* Solid backdrop for case study / detail pages */
@@ -150,6 +276,13 @@ body.night-mode .detail-page-bg::before {
 .home-hero {
   position: relative;
   height: 100vh;
+  z-index: 2;
+}
+
+.home-hero > .scroll-reveal {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
 .home-intro {
@@ -160,12 +293,12 @@ body.night-mode .detail-page-bg::before {
   z-index: 6;
   width: min(720px, calc(100% - 48px));
   padding: 18px 20px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(0, 0, 0, 0.10);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.10);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  border-radius: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   pointer-events: none;
   text-align: center;
 }
@@ -173,6 +306,18 @@ body.night-mode .detail-page-bg::before {
 body.night-mode .home-intro {
   background: rgba(20, 42, 80, 0.40);
   border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Ensure no visual box appears behind the home intro text in any mode */
+.home-intro,
+.home-intro *,
+body.night-mode .home-intro,
+body.night-mode .home-intro * {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 .home-intro-title {
@@ -185,9 +330,38 @@ body.night-mode .home-intro {
 
 .home-intro-body {
   margin: 0;
-  font-size: 18px;
-  line-height: 1.35;
-  color: var(--text);
+  font-size: 20px;
+  line-height: 1.8;
+  color: #000;
+}
+
+/* Keep intro paragraph white in night mode */
+body.night-mode .home-intro-body {
+  color: #fff;
+}
+
+/* Typewriter cursor styling (match day highlight pink) */
+.typewriter-cursor {
+  color: rgba(252, 152, 225, 0.784);
+  font-weight: 700;
+  margin-left: 2px;
+  display: inline-block;
+  animation: type-cursor-blink 1s steps(1) infinite;
+}
+
+@keyframes type-cursor-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Keep cursor visible/white in night mode for contrast */
+body.night-mode .typewriter-cursor {
+  color: #fff;
+}
+
+/* Make about section paragraphs white in night mode */
+body.night-mode .about-paragraph {
+  color: #fff;
 }
 
 .about-grid {
@@ -213,17 +387,25 @@ body.night-mode .about-text {
 }
 
 .about-heading {
-  margin: 0 0 10px;
+  margin: 0 0 6px;
   font-size: 28px;
   line-height: 1.1;
   color: var(--fg);
 }
 
+.about-location {
+  margin: 0 0 16px;
+  font-size: 15px;
+  color: var(--text);
+  opacity: 0.65;
+  letter-spacing: 0.02em;
+}
+
 .about-paragraph {
   margin: 0 0 12px;
   font-size: 18px;
-  line-height: 1.45;
-  color: var(--text);
+  line-height: 1.7;
+  color: var(--fg);
 }
 
 .about-photo {
@@ -316,7 +498,7 @@ body.night-mode .project-row {
 }
 
 .project-tile {
-  height: 210px;
+  height: 370px;
   border-radius: 14px;
   background:
     linear-gradient(135deg, rgba(165, 232, 237, 0.35), rgba(28, 85, 33, 0.18));
@@ -334,11 +516,31 @@ body.night-mode .project-tile {
     linear-gradient(135deg, rgba(165, 232, 237, 0.22), rgba(20, 42, 80, 0.30));
 }
 
+.project-tile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 14px;
+}
+
 .project-tile-label {
   font-size: 18px;
   color: var(--text);
   opacity: 0.9;
   text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  text-align: center;
+  padding: 12px;
+}
+
+/* Center project meta (title/description) vertically and horizontally next to the tile */
+.project-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .project-title {
@@ -376,6 +578,18 @@ body.night-mode .project-tag {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
+.project-row--alt {
+  grid-template-columns: 1fr minmax(420px, 46%);
+}
+
+.project-row--alt .project-tile {
+  order: 2;
+}
+
+.project-row--alt .project-meta {
+  order: 1;
+}
+
 .project-row--clickable:hover {
   transform: translateY(-3px);
   box-shadow: 0 14px 36px rgba(0,0,0,0.12);
@@ -386,88 +600,170 @@ body.night-mode .project-tag {
   outline-offset: 2px;
 }
 
-/* Project Detail Page — article layout */
+/* Project Detail Page */
+.project-detail-wrapper {
+  width: 100%;
+  padding: 0;
+}
+
 .project-detail {
   padding: 0;
-  max-width: 720px;
-  margin: 0 auto;
   font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Full-width hero banner with title overlay */
+.project-detail-hero {
+  position: relative;
+  width: 100%;
+  min-height: 620px;
+  margin-bottom: 56px;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+}
+
+.project-detail-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
+.project-detail-hero-placeholder {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.06);
+}
+
+body.night-mode .project-detail-hero-placeholder {
+  background: rgba(255,255,255,0.04);
+}
+
+.project-detail-hero-overlay {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: calc(var(--topbar-h) + 32px) 48px 48px;
+  box-sizing: border-box;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.15) 0%,
+    rgba(0,0,0,0.0) 30%,
+    rgba(0,0,0,0.45) 100%
+  );
+}
+
+.project-detail-hero-text {
+  margin-top: auto;
 }
 
 .project-detail-back {
   appearance: none;
   background: none;
   border: none;
-  color: var(--text);
+  color: #fff;
   font: inherit;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   cursor: pointer;
-  padding: 8px 0;
-  margin-bottom: 48px;
-  opacity: 0.5;
+  padding: 0;
+  margin-bottom: 24px;
+  opacity: 0.8;
   transition: opacity 0.15s ease;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  align-self: flex-start;
 }
 
 .project-detail-back:hover {
   opacity: 1;
 }
 
-.project-detail-header {
-  margin-bottom: 48px;
-  text-align: center;
-}
-
 .project-detail-title {
-  margin: 0 0 16px;
-  font-size: 48px;
+  margin: 0 0 12px;
+  font-size: 52px;
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
-  color: var(--fg);
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.3);
 }
 
 .project-detail-subtitle {
-  margin: 0 0 20px;
-  font-size: 21px;
-  line-height: 1.55;
-  color: var(--text);
-  opacity: 0.7;
+  margin: 0 0 16px;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #fff;
+  opacity: 0.9;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.25);
 }
 
 .project-detail-tags {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 6px 18px;
 }
 
-.project-detail-hero {
-  margin-bottom: 56px;
-  border-radius: 14px;
-  overflow: hidden;
+.project-detail-tags .project-tag {
+  color: #fff;
+  opacity: 0.75;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
 
-.project-detail-hero-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.project-detail-hero-placeholder {
-  height: 380px;
+/* Article body */
+.project-detail-layout {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  color: var(--text);
-  opacity: 0.35;
-  background: rgba(0,0,0,0.03);
-  border-radius: 14px;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+  gap: 48px;
 }
 
-body.night-mode .project-detail-hero-placeholder {
-  background: rgba(255,255,255,0.04);
+.project-detail-sidenav {
+  position: sticky;
+  top: calc(var(--topbar-h) + 32px);
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 140px;
+  padding-top: 40px;
+}
+
+.project-detail-sidenav-item {
+  appearance: none;
+  background: none;
+  border: none;
+  border-left: 2px solid transparent;
+  padding: 6px 12px;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  opacity: 0.4;
+  cursor: pointer;
+  text-align: left;
+  transition: opacity 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+
+.project-detail-sidenav-item:hover {
+  opacity: 0.7;
+}
+
+.project-detail-sidenav-item.active {
+  opacity: 1;
+  color: var(--fg);
+  border-left-color: var(--fg);
+  font-weight: 600;
+}
+
+.project-detail-body {
+  flex: 1;
+  min-width: 0;
 }
 
 .project-detail-content {
@@ -521,6 +817,68 @@ body.night-mode .project-detail-section:last-child {
   color: var(--text);
 }
 
+.project-detail-section--wide {
+  max-width: none;
+}
+
+.project-detail-solution-grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.project-detail-solution-text {
+  min-width: 0;
+}
+
+.project-detail-solution-img-wrap {
+  min-width: 0;
+}
+
+.project-detail-section-img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-top: 0;
+}
+
+/* Scroll-reveal fade-up */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.scroll-reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scroll-triggered highlight */
+.highlight {
+  --highlight-color: rgba(252, 152, 225, 0.45);
+  background: linear-gradient(
+    to right,
+    var(--highlight-color) 50%,
+    transparent 50%
+  );
+  background-size: 200% 100%;
+  background-position: right;
+  transition: background-position 1.2s ease-in-out;
+  border-radius: 3px;
+  padding: 1px 4px;
+  margin: 0 -4px;
+}
+
+.highlight--visible {
+  background-position: left;
+}
+
+body.night-mode .highlight {
+  --highlight-color: rgba(118, 227, 235, 0.2);
+}
+
 .project-detail-process {
   margin: 0;
   padding-left: 20px;
@@ -551,6 +909,14 @@ body.night-mode .project-detail-section:last-child {
 }
 
 @media (max-width: 820px) {
+  .project-detail-hero {
+    min-height: 360px;
+  }
+
+  .project-detail-hero-overlay {
+    padding: calc(var(--topbar-h) + 24px) 24px 32px;
+  }
+
   .project-detail-title {
     font-size: 36px;
   }
@@ -561,6 +927,14 @@ body.night-mode .project-detail-section:last-child {
 
   .project-detail-gallery {
     grid-template-columns: 1fr;
+  }
+
+  .project-detail-sidenav {
+    display: none;
+  }
+
+  .project-detail-layout {
+    padding: 0 16px;
   }
 }
 
@@ -578,7 +952,46 @@ body.night-mode .project-detail-section:last-child {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
+  justify-items: center;
 }
+
+/* Marquee-style gallery (continuous slide + subtle rotation) */
+.gallery-marquee {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 12px 0;
+}
+
+.gallery-track {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  /* duplicate content is rendered in DOM; translate -50% to loop */
+  animation: gallery-marquee 25s linear infinite;
+}
+
+.gallery-item {
+  flex: 0 0 auto;
+  display: inline-block;
+  transform-origin: center;
+}
+
+.gallery-item img,
+.gallery-item video {
+  display: block;
+}
+
+.gallery-marquee:hover .gallery-track {
+  animation-play-state: paused;
+}
+
+@keyframes gallery-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Removed gallery-sway animation to stop wobbling */
 
 .gallery-tile {
   aspect-ratio: 1 / 1;
@@ -654,41 +1067,14 @@ body {
   z-index: 0;
 }
 
-/* Day layer */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: url('/assets/background.png') center 100% / cover no-repeat;
-  opacity: 1;
-  pointer-events: none;
-  z-index: -2;
-}
-
-/* Night overlay layer */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: url('/assets/night_background.png') center 100% / cover no-repeat;
-  opacity: 0;
-  transition: opacity 2s cubic-bezier(.4,0,.2,1);
-  pointer-events: none;
-  z-index: -1;
-}
-
-/* Make sure app content is above the background overlay */
+/* Make sure app content is above the Home hero background */
 #root {
   position: relative;
   z-index: 1;
 }
 
-body.night-mode::before {
-  opacity: 1;
-}
-
 body.night-mode, .night-mode #root {
-  --bg: #142a50;
+  --bg:  #141e30;
   --text: #e6e6e6;
   --room-wall: #232733;
   --room-fg: #232733;
@@ -708,7 +1094,7 @@ body.night-mode, .night-mode #root {
 
 .room-canvas {
   width: 90vw;
-  max-width: 1100px;
+  max-width: 1320px;
   height: auto;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.12);

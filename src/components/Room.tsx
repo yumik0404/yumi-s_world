@@ -123,7 +123,7 @@ export default function Room() {
           bottom: 0,
           width: '100vw',
           height: 'auto',
-          pointerEvents: 'none',
+          pointerEvents: 'auto',
           zIndex: 2
         }}
         onMouseLeave={() => {
@@ -150,7 +150,7 @@ export default function Room() {
           width={girlHitW}
           height={girlHitH}
           fill="transparent"
-          style={{ pointerEvents: 'auto', cursor: 'pointer' }}
+          style={{ pointerEvents: 'all', cursor: 'pointer' }}
           onMouseEnter={() => setIsGirlHover(true)}
           onMouseLeave={() => setIsGirlHover(false)}
         />
@@ -163,7 +163,7 @@ export default function Room() {
           height={aboutHitH}
           fill="transparent"
           vectorEffect="non-scaling-stroke"
-          style={{ pointerEvents: 'auto', cursor: 'pointer' }}
+          style={{ pointerEvents: 'all', cursor: 'pointer' }}
           onMouseEnter={() => setIsAboutHover(true)}
           onMouseLeave={() => setIsAboutHover(false)}
           onClick={() => scrollToSection('about')}
@@ -202,7 +202,7 @@ export default function Room() {
           width={deerHitW}
           height={deerHitH}
           fill="transparent"
-          style={{ pointerEvents: 'auto', cursor: 'pointer' }}
+          style={{ pointerEvents: 'all', cursor: 'pointer' }}
           onMouseEnter={() => {
             setIsDeerHover(true)
             setIsArtHover(true)

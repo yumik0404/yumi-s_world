@@ -1,5 +1,7 @@
 import React from 'react'
 import { type ProjectData } from './ProjectDetail'
+import Highlight from '../components/Highlight'
+import ScrollReveal from '../components/ScrollReveal'
 
 export type { ProjectData }
 
@@ -11,8 +13,10 @@ export const projectsData: ProjectData[] = [
     tags: ['UX Design', 'Research'],
     overview: '(Placeholder) Provide a brief overview of the project, the client/context, and your role.',
     heroImage: '/assets/marketplace.png',
-    problem: "Facebook Marketplace is a popular platform to buy and sell second hand items locally. At this moment, the only browsing feature that Marketplace provides is in a list format, giving only general geographical context. For users in cities where owning a car is rare, location/distance is a key factor when searching for items. How can we help users quickly understand an item's proximity and discover listings near them?",
-solution: '(Placeholder) Explain your design solution and how it addresses the problem.',
+    tileImage: '/assets/fb_marketplace_intro_pic.png',
+    problem: <>Facebook Marketplace is a popular platform to buy and sell second hand items locally. At this moment, the only browsing feature that Marketplace provides is in a list format, giving <Highlight>only general geographical context</Highlight>. For users in cities where owning a car is rare, location/distance is a key factor when searching for items. <Highlight>How can we help users quickly understand an item's proximity and discover listings near them?</Highlight></>,
+solution: 'I chose to present items in a map view in order to prioritize geographical context when searching for an item. Upon hovering or clicking on an item, the user can gain more information such as a more full fledged item description, ability to message seller. Using the list view on the right, users can hover over items and see the location price marker darken on the map, allowing for that location information to be given to the user seamlessly and automatically.',
+    solutionImage: '/assets/fb_marketplace_solution.png',
     process: [
       '(Placeholder) Research & Discovery',
       '(Placeholder) Ideation & Wireframes',
@@ -48,21 +52,27 @@ type Props = {
 export default function Projects({ onSelectProject }: Props) {
   return (
     <div className="projects">
-      <h2 className="section-title">Projects</h2>
-      <p className="section-subtitle">(Placeholder) A few things I've made.</p>
+      <ScrollReveal>
+        <h2 className="section-title">Projects</h2>
+        <p className="section-subtitle">Case Studies</p>
+      </ScrollReveal>
 
       <div className="projects-list" role="list">
-        {projectsData.map(project => (
-          <article
-            key={project.id}
-            className="project-row project-row--clickable"
-            role="listitem"
-            onClick={() => onSelectProject(project)}
-            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onSelectProject(project) }}
-            tabIndex={0}
-          >
+        {projectsData.map((project, i) => (
+          <ScrollReveal key={project.id} delay={i * 100}>
+            <article
+              className={`project-row project-row--clickable${i % 2 === 1 ? ' project-row--alt' : ''}`}
+              role="listitem"
+              onClick={() => onSelectProject(project)}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onSelectProject(project) }}
+              tabIndex={0}
+            >
             <div className="project-tile" aria-hidden="true">
-              <div className="project-tile-label">Image / Video</div>
+              {project.tileImage ? (
+                <img src={project.tileImage} alt={project.title} className="project-tile-img" />
+              ) : (
+                <div className="project-tile-label">Image / Video</div>
+              )}
             </div>
 
             <div className="project-meta">
@@ -79,6 +89,7 @@ export default function Projects({ onSelectProject }: Props) {
               )}
             </div>
           </article>
+          </ScrollReveal>
         ))}
       </div>
     </div>
