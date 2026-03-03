@@ -118,9 +118,6 @@ export default function ProjectDetail({ project, onBack }: Props) {
           <section id="pd-solution" className="project-detail-section project-detail-section--wide">
             <h2 className="project-detail-section-title">The Solution</h2>
             <div className="project-detail-solution-grid">
-              <div className="project-detail-solution-text">
-                <p className="project-detail-section-body">{project.solution}</p>
-              </div>
               {project.solutionImage && (
                 <div className="project-detail-solution-img-wrap">
                   <img
@@ -130,6 +127,9 @@ export default function ProjectDetail({ project, onBack }: Props) {
                   />
                 </div>
               )}
+              <div className="project-detail-solution-text">
+                <p className="project-detail-section-body">{project.solution}</p>
+              </div>
             </div>
           </section>
 

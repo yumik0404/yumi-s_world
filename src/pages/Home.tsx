@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Room from '../components/Room'
 import ScrollReveal from '../components/ScrollReveal'
 
-const phrases = ['Yumi', 'a Designer', 'an Engineer', 'a Creative']
+const phrases = ['Yumi', 'a Designer', 'an Engineer', 'a Food Enthusiast']
 const TYPING_SPEED = 100
 const DELETING_SPEED = 60
 const PAUSE_AFTER_TYPING = 2000

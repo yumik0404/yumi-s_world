@@ -10,7 +10,7 @@ export default function App() {
   const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [pendingSection, setPendingSection] = useState<string | null>(null)
-  const [nightMode, setNightMode] = useState(true)
+  const [nightMode, setNightMode] = useState(false)
   const [isScrolling, setIsScrolling] = useState(false)
 
   // Apply night mode class to body

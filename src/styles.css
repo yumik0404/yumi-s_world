@@ -34,11 +34,13 @@
   --room-wall: #f6e6d7;
   --room-fg: #fff;
   --transition: background 2s cubic-bezier(.4,0,.2,1), color 2s cubic-bezier(.4,0,.2,1);
-  --fg: #1c5521; /* dark green */
+  --fg: #5f7662; /* dark green */
   --topbar-h: 56px;
   --content-max: 1440px;
   /* Font roles */
-  --font-title: 'NeueHaas', 'Helvetica Neue', sans-serif;
+  --font-title: 'AlteHaasGrotesk', 'NeueHaas', 'Helvetica Neue', sans-serif;
+  /* Title font switched to Alte Haas Grotesk */
+  /* will be overridden below by @font-face if available */
   --font-body: 'Helvetica Neue', 'Segoe UI', Roboto, Arial, sans-serif;
   --font-accent: 'YumiWorld', 'Helvetica Neue', Arial, sans-serif;
 }
@@ -68,12 +70,40 @@
   font-display: swap;
 }
 
+/* Alte Haas Grotesk (use as title font) */
+@font-face {
+  font-family: 'AlteHaasGrotesk';
+  src: url('/assets/fonts/alte_haas_grotesk/AlteHaasGroteskRegular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'AlteHaasGrotesk';
+  src: url('/assets/fonts/alte_haas_grotesk/AlteHaasGroteskBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Title font (role) */
 .section-title,
 .project-title,
 .home-intro-title,
-.project-detail-title {
+.project-detail-title,
+.project-detail-section-title {
   font-family: var(--font-title);
+}
+
+/* Slightly tighten spacing between letters for titles */
+.section-title,
+.project-title,
+.home-intro-title,
+.project-detail-title,
+.project-detail-section-title,
+.topnav-brand {
+  letter-spacing: -0.075em;
 }
 
 html, body, #root {
@@ -132,7 +162,7 @@ body.night-mode .topnav {
 .topnav-brand {
   font-size: 20px;
   font-weight: 700;
-  letter-spacing: 0.2px;
+  letter-spacing: -0.075em;
   color: var(--fg);
   text-shadow: 0 4px 10px rgba(0,0,0,0.10);
   white-space: nowrap;
@@ -165,7 +195,9 @@ body.night-mode .topnav {
 
 /* Right-side topnav buttons use the accent font */
 .topnav-right .topnav-link {
-  font-family: var(--font-accent);
+  font-family: var(--font-title);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 body.night-mode .topnav-link {
@@ -291,7 +323,7 @@ body.night-mode .detail-page-bg::before {
   top: 43%;
   transform: translate(-50%, -45%);
   z-index: 6;
-  width: min(720px, calc(100% - 48px));
+  width: min(920px, calc(100% - 48px));
   padding: 18px 20px;
   border-radius: 0;
   background: none;
@@ -321,8 +353,8 @@ body.night-mode .home-intro * {
 }
 
 .home-intro-title {
-  margin: 0 0 8px;
-  font-size: 44px;
+  margin: 0 0 12px;
+  font-size: 56px;
   line-height: 1.05;
   color: var(--fg);
   text-shadow: 0 6px 18px rgba(0,0,0,0.10);
@@ -330,8 +362,8 @@ body.night-mode .home-intro * {
 
 .home-intro-body {
   margin: 0;
-  font-size: 20px;
-  line-height: 1.8;
+  font-size: 30px;
+  line-height: 1.7;
   color: #000;
 }
 
@@ -342,7 +374,7 @@ body.night-mode .home-intro-body {
 
 /* Typewriter cursor styling (match day highlight pink) */
 .typewriter-cursor {
-  color: rgba(252, 152, 225, 0.784);
+  color: rgba(249, 196, 235, 0.784);
   font-weight: 700;
   margin-left: 2px;
   display: inline-block;
@@ -462,6 +494,15 @@ body.night-mode .about-photo-img {
   font-size: 44px;
   line-height: 1.05;
   color: var(--fg);
+}
+
+/* Ensure titles use the bold weight of the title font */
+.section-title,
+.project-title,
+.home-intro-title,
+.project-detail-title,
+.topnav-brand {
+  font-weight: 700;
 }
 
 .section-subtitle {
@@ -687,7 +728,7 @@ body.night-mode .project-detail-hero-placeholder {
   font-size: 52px;
   font-weight: 700;
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.075em;
   color: #fff;
   text-shadow: 0 2px 12px rgba(0,0,0,0.3);
 }
@@ -739,9 +780,10 @@ body.night-mode .project-detail-hero-placeholder {
   border: none;
   border-left: 2px solid transparent;
   padding: 6px 12px;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--font-title);
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   color: var(--text);
   opacity: 0.4;
   cursor: pointer;
@@ -758,7 +800,7 @@ body.night-mode .project-detail-hero-placeholder {
   opacity: 1;
   color: var(--fg);
   border-left-color: var(--fg);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .project-detail-body {
@@ -803,11 +845,12 @@ body.night-mode .project-detail-section:last-child {
 .project-detail-section-title {
   margin: 0 0 16px;
   font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
   color: var(--fg);
-  opacity: 0.5;
+  opacity: 1;
+  font-family: var(--font-title);
 }
 
 .project-detail-section-body {
@@ -822,21 +865,26 @@ body.night-mode .project-detail-section:last-child {
 }
 
 .project-detail-solution-grid {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
+  display: flex;
+  flex-direction: column;
   gap: 32px;
   align-items: center;
 }
 
 .project-detail-solution-text {
   min-width: 0;
+  width: 100%;
 }
 
 .project-detail-solution-img-wrap {
   min-width: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .project-detail-section-img {
+  max-width: 720px;
   width: 100%;
   height: auto;
   border-radius: 12px;

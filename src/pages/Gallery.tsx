@@ -24,7 +24,7 @@ export default function Gallery() {
     <div className="gallery">
       <ScrollReveal>
         <h2 className="section-title">Gallery</h2>
-        <p className="section-subtitle">Here are my creations :)</p>
+        <p className="section-subtitle">Here are some of my creations :)</p>
       </ScrollReveal>
 
       <ScrollReveal delay={100}>

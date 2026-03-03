@@ -11,11 +11,19 @@ export const projectsData: ProjectData[] = [
     title: 'Facebook Marketplace Navigation Redesign',
     subtitle: "I explored how introducing map-based browsing enhances a facebook marketplace user's experience when searching for items nearby to them.",
     tags: ['UX Design', 'Research'],
-    overview: '(Placeholder) Provide a brief overview of the project, the client/context, and your role.',
+    overview: 'This project explores how adding a map‑based browsing experience to Facebook Marketplace can improve the way users discover and evaluate second‑hand items based on proximity. In dense urban environments—especially places like New York City—distance and convenience often matter as much as price or item quality. This redesign aims to make location a first‑class part of the browsing experience.',
     heroImage: '/assets/marketplace.png',
     tileImage: '/assets/fb_marketplace_intro_pic.png',
     problem: <>Facebook Marketplace is a popular platform to buy and sell second hand items locally. At this moment, the only browsing feature that Marketplace provides is in a list format, giving <Highlight>only general geographical context</Highlight>. For users in cities where owning a car is rare, location/distance is a key factor when searching for items. <Highlight>How can we help users quickly understand an item's proximity and discover listings near them?</Highlight></>,
-solution: 'I chose to present items in a map view in order to prioritize geographical context when searching for an item. Upon hovering or clicking on an item, the user can gain more information such as a more full fledged item description, ability to message seller. Using the list view on the right, users can hover over items and see the location price marker darken on the map, allowing for that location information to be given to the user seamlessly and automatically.',
+    solution: <>Introduce a <Highlight>map‑based browsing mode</Highlight> that displays listings spatially, similar to platforms like Airbnb, Zillow, and Apartments.com. The redesigned experience includes:
+      <ul>
+        <li>A map on the left and a list view on the right</li>
+        <li>Hover interactions that highlight corresponding map markers</li>
+        <li>Adjustable radius‑based searching</li>
+        <li>Support for <Highlight>both precise and generalized seller locations</Highlight></li>
+        <li>A more intuitive, proximity‑first browsing flow</li>
+      </ul>
+      This approach <Highlight>makes distance instantly clear</Highlight>, reduces unnecessary clicks, and aligns Marketplace with modern location‑based browsing patterns.</>,
     solutionImage: '/assets/fb_marketplace_solution.png',
     process: [
       '(Placeholder) Research & Discovery',
@@ -24,24 +32,6 @@ solution: 'I chose to present items in a map view in order to prioritize geograp
       '(Placeholder) Final Design & Handoff',
     ],
     results: '(Placeholder) Share the outcomes—metrics, user feedback, or impact on the business.',
-  },
-  {
-    id: 'project-two',
-    title: 'Project Two',
-    subtitle: '(Placeholder) Another case study tagline',
-    tags: ['Product Design', 'Mobile'],
-    overview: '(Placeholder) Overview of project two.',
-    problem: '(Placeholder) The problem this project addressed.',
-    solution: '(Placeholder) How you solved it.',
-  },
-  {
-    id: 'project-three',
-    title: 'Project Three',
-    subtitle: '(Placeholder) Third case study tagline',
-    tags: ['Branding', 'Visual Design'],
-    overview: '(Placeholder) Overview of project three.',
-    problem: '(Placeholder) The challenge.',
-    solution: '(Placeholder) Your approach.',
   },
 ]
 
