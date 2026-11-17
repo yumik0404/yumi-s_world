@@ -47,7 +47,7 @@ export default function Home() {
             Hi, I'm <span className="typewriter">{displayText}<span className="typewriter-cursor">|</span></span>
           </h1>
           <p className="home-intro-body">
-            Aspiring designer exploring the intersection of technology, creativity, and human connection. I'm passionate about crafting thoughtful digital experiences that are inclusive, intuitive, and a little bit playful. Welcome to my world!
+            Aspiring designer exploring the intersection of technology and human connection. I'm passionate about crafting thoughtful digital experiences that are inclusive, intuitive, and a little bit playful. Welcome to my world!
           </p>
         </div>
       </ScrollReveal>

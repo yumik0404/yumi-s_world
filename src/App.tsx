@@ -203,6 +203,21 @@ export default function App() {
         </div>
       </section>
 
+      <section id="miffy-divider" className="section section--miffy-divider">
+        <div className="miffy-hover-wrap">
+          <img
+            src="/assets/yumi-miffy.png"
+            alt="Yumi with Miffy, hover to see a wave"
+            className="miffy-hover-img miffy-hover-img--default"
+          />
+          <img
+            src="/assets/wave-miffy-text.png"
+            alt="Miffy waving hello"
+            className="miffy-hover-img miffy-hover-img--hover"
+          />
+        </div>
+      </section>
+
       <section id="about" className="section">
         <div className="section-inner">
           <About />

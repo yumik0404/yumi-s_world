@@ -33,6 +33,31 @@ export const projectsData: ProjectData[] = [
     ],
     results: '(Placeholder) Share the outcomes—metrics, user feedback, or impact on the business.',
   },
+  {
+    id: 'project-two',
+    title: 'Actors Access Revamp',
+    subtitle: '(Placeholder) A redesign exploring how to improve the experience for actors navigating casting submissions and auditions.',
+    tags: ['UX Design', 'Research'],
+    overview: '(Placeholder) Overview of the Actors Access revamp project—what the platform does, who it serves, and why a redesign was needed.',
+    heroImage: undefined,
+    tileImage: undefined,
+    problem: <>(Placeholder) Describe the core problem actors face when using the current platform. <Highlight>What pain points motivated this redesign?</Highlight></>,
+    solution: <>(Placeholder) Describe the proposed solution and key improvements.
+      <ul>
+        <li>(Placeholder) Improvement one</li>
+        <li>(Placeholder) Improvement two</li>
+        <li>(Placeholder) Improvement three</li>
+      </ul>
+    </>,
+    solutionImage: undefined,
+    process: [
+      '(Placeholder) Research & Discovery',
+      '(Placeholder) Ideation & Wireframes',
+      '(Placeholder) Prototyping & Testing',
+      '(Placeholder) Final Design & Handoff',
+    ],
+    results: '(Placeholder) Share the outcomes—metrics, user feedback, or impact on the business.',
+  },
 ]
 
 type Props = {

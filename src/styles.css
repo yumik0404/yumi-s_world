@@ -996,6 +996,48 @@ body.night-mode .highlight {
   }
 }
 
+/* Miffy hover divider (between About and Gallery) */
+.section--miffy-divider {
+  min-height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+}
+
+.miffy-hover-wrap {
+  position: relative;
+  display: inline-block;
+  width: min(360px, 60vw);
+  cursor: pointer;
+}
+
+.miffy-hover-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity 0.35s ease;
+}
+
+.miffy-hover-img--default {
+  position: relative;
+  opacity: 1;
+}
+
+.miffy-hover-img--hover {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.miffy-hover-wrap:hover .miffy-hover-img--default {
+  opacity: 0;
+}
+
+.miffy-hover-wrap:hover .miffy-hover-img--hover {
+  opacity: 1;
+}
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
