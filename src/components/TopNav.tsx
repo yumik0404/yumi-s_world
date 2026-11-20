@@ -1,5 +1,4 @@
 import React from 'react'
-import type { SiteMode } from '../App'
 
 type NavItem = {
   id: string
@@ -11,27 +10,17 @@ type TopNavProps = {
   isOnDetailPage?: boolean
   nightMode: boolean
   setNightMode: (value: boolean) => void
-  siteMode?: SiteMode
-  onBackToLanding?: () => void
 }
 
-const designItems: NavItem[] = [
+const items: NavItem[] = [
   { id: 'projects', label: 'Projects' },
   { id: 'about', label: 'About' },
   { id: 'gallery', label: 'Gallery' },
   { id: 'resume', label: 'Resume' },
 ]
 
-const musicItems: NavItem[] = [
-  { id: 'music-tracks', label: 'Music' },
-  { id: 'shows', label: 'Shows' },
-  { id: 'videos', label: 'Videos' },
-  { id: 'music-contact', label: 'Contact' },
-]
-
-export default function TopNav({ onNavigate, isOnDetailPage, nightMode, setNightMode, siteMode = 'design', onBackToLanding }: TopNavProps) {
+export default function TopNav({ onNavigate, isOnDetailPage, nightMode, setNightMode }: TopNavProps) {
   const night = nightMode
-  const items = siteMode === 'music' ? musicItems : designItems
 
   const scrollTo = (id: string) => {
     // If on detail page, use onNavigate to go back to main page first
@@ -51,7 +40,7 @@ export default function TopNav({ onNavigate, isOnDetailPage, nightMode, setNight
         <button
           type="button"
           className="topnav-brand"
-          onClick={() => onBackToLanding ? onBackToLanding() : scrollTo('home')}
+          onClick={() => scrollTo('home')}
         >
           Yumi&apos;s World
         </button>

@@ -118,7 +118,55 @@ html {
 }
 
 .onepage {
+  position: relative;
+  isolation: isolate;
   color: var(--text);
+}
+
+.footsteps {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  color: var(--fg);
+}
+
+body.night-mode .footsteps {
+  color: #cfe3d1;
+}
+
+.footstep {
+  --flip: 1;
+  position: absolute;
+  display: block;
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(var(--rot)) scaleX(var(--flip)) scale(0.6);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.footstep--mirror {
+  --flip: -1;
+}
+
+.footstep--visible {
+  opacity: 0.5;
+  transform: translate(-50%, -50%) rotate(var(--rot)) scaleX(var(--flip)) scale(1);
+}
+
+.footstep svg,
+.footstep img {
+  display: block;
+  fill: currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footstep {
+    transition: none;
+  }
 }
 
 .topnav {
